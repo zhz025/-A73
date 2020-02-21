@@ -13,10 +13,12 @@
   },
   "main": "app.js",
   "dependencies": {
-    "express": "3.x"
+    "express": "3.x",
+    "body-parser": "^1.19.0",
+    "express3-handlebars": "^0.5.2"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "10.13"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",
