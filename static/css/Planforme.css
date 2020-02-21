@@ -1,15 +1,30 @@
+body,html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
 #footer h2{
 	text-align: center;
 	margin: 0 auto;
 	line-height: 70px;
 }
-
+#header {
+	position: fixed;
+	overflow: hidden;
+	height: 70px;
+	width: 100%;
+	background-color: #fff;
+	line-height: 70px;
+	font-size: 22px;
+	font-weight: 700;
+	color: rgb(42,198,187);
+}
 #box{
-	width: 300px;
-	height: 690px;
+	width: 100%;
+	height: 100%;
 	margin: 0 auto;
-	border-radius: 25px;
-	border: 3px solid;
 }
 #box header{
 	text-align: center;
@@ -17,18 +32,33 @@
 #box div{
 	z-index: 1;
 }
-
+#back {
+	background-color: #fff;
+	width: 100%;
+	height: 33px;
+	position: fixed;
+	bottom: 0;
+}
 #back img{
 	z-index: 10;
+	
 	width: 33px;
 	height: 33px;
 	float: left;
 	margin-left: 28px;
-
 }
+.step {
+	display: none;
+	height: calc(100% - 103px);
+	padding-top: 70px;
+	/* padding-bottom: 33px; */
+}
+
 #jsonWrap{
-	height: 500px;
+	height: calc(100% - 60px);
 	overflow: auto;
+	/* padding-bottom: 93px; */
+	/* overflow: auto; */
 }
 .objS{
 	padding: 15px;
@@ -48,9 +78,7 @@
 	color: rgb(42,198,187);
 }
 
-.step {
-	display: none;
-}
+
 
 .step[step='1'] {
 	display: block;
@@ -85,6 +113,7 @@ input.time {
 	color: #fff;
 } 
 #warning  button {
+	
 	margin: 0 10px;
 	margin-top: 10px;
 	width: 80px;
@@ -100,6 +129,15 @@ input.time {
 }
 
 #continue,.operating {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 33px;
+	width: 100%;
+	background-color: #fff;
+}
+
+#continue button,.operating button{
 	background-color: rgb(42,198,187);
 	display: block;
 	border: none;

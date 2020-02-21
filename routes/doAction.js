@@ -11,10 +11,11 @@ exports.GetAssignment = function(id) {
   }
   if (id !== undefined) {
     var ids = id.split(",")
+    console.log(ids)
     var temp = data['assignment'].filter(function(item){
       return (ids.filter(function(_item){
         return _item == item.id
-      }) > 0)
+      }).length > 0)
     })
     return temp
   } else {
