@@ -48,6 +48,12 @@ exports.init = function(app){
     return res.json({code: 0})
   })
 
+  app.post(ApiUrl + 'AssignmentList',function (req,res) {
+    var { id } = req.body
+    var data = doAction.GetAssignment(id)
+    return res.json({code: 0,data })
+  })
+
   app.post(ApiUrl + 'deleteAssignmentByID',function (req,res) {
     var { id } = req.body
     doAction.DeleteAssignmentByID(id)

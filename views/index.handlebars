@@ -4,29 +4,31 @@
 	<title>homepage</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 <body>
 <div id="box">
 	<header>
 		{{#if fburl }}
-			<a href="/api/exit"><img src='{{fburl}}' id="login"></a>
+			<a href="/login"><img src='{{fburl}}' id="login"></a>
 		{{else }}
-			<a href="/api/exit"><img src='photo/6.png' id="login"></a>
+			<a href="/login"><img src='photo/6.png' id="login"></a>
+		
 		{{/if}}
 		<h3 id="titleT" style="font-size: 22px;" class="highColor"></h3>
 		<hr>
 	</header>
 	<div id="jsonWrap">
-        {{#each assignment}}
-        <div class="objS">
-            <h4 class="highColor">{{name}}</h4>
-            <h4>{{classN}}</h4>
-            <h3>Due Date: {{formatDate date}}</h3>
-            <h3>Time Left: {{countTime date}} days</h3>
-						<button style="float: right;" onclick="deleteID({{id}})">delete</button>
-        </div>
-        {{/each}}
+			{{#each assignment}}
+			<div class="objS">
+					<h4 class="highColor">{{name}}</h4>
+					<h4>{{classN}}</h4>
+					<h3>Due Date: {{formatDate date}}</h3>
+					<h3>Time Left: {{countTime date}} days</h3>
+					<button style="float: right;" onclick="deleteID({{id}})">delete</button>
+			</div>
+			{{/each}}
 	</div>
 	<div id="footer">
 		<div id="footer1">

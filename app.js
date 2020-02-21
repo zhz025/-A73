@@ -59,11 +59,11 @@ global.isLogin = function(req,res,next) {
   }
 }
 // Add routes here
-app.get('/', indexRouter.view);
-app.get('/Assignment',indexRouter.Assignment)
-app.get('/calendar',  indexRouter.calendar)
-app.get('/Todolist', indexRouter.Todolist)
-app.get('/Planforme', indexRouter.Planforme)
+app.get('/', global.isLogin,indexRouter.view);
+app.get('/Assignment', global.isLogin, indexRouter.Assignment)
+app.get('/calendar', global.isLogin, indexRouter.calendar)
+app.get('/Todolist', global.isLogin, indexRouter.Todolist)
+app.get('/Planforme', global.isLogin, indexRouter.Planforme)
 app.get('/login', userRouter.loginView)
 app.get('/register', userRouter.registerView)
 
