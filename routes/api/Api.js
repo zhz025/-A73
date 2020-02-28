@@ -60,6 +60,12 @@ exports.init = function(app){
     
     return res.json({code: 0})
   })
+  app.post(ApiUrl + 'FinishAssignment',function (req,res) {
+    var { id } = req.body
+    doAction.FinishAssignmentByID(id)
+    
+    return res.json({code: 0})
+  })
 
   app.post(ApiUrl + 'SaveFbInfo',function (req,res) {
     var {name,fburl } = req.body

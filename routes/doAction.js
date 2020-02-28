@@ -11,7 +11,6 @@ exports.GetAssignment = function(id) {
   }
   if (id !== undefined) {
     var ids = id.split(",")
-    console.log(ids)
     var temp = data['assignment'].filter(function(item){
       return (ids.filter(function(_item){
         return _item == item.id
@@ -55,6 +54,24 @@ exports.DeleteAssignmentByID = function(id) {
     SaveData()
   } 
   return true
+}
+
+exports.FinishAssignmentByID = function(id) {
+  if (!data['assignment']) {
+    return true
+  }
+  if (id !== undefined) {
+    var ids = id.split(",")
+    var temp = data['assignment'].filter(function(item){
+      return (ids.filter(function(_item){
+        return _item == item.id
+      }).length > 0)
+    })
+    temp.forEach(function(item){
+      item.isFinish = true
+    })
+    SaveData()
+  }
 }
 
 exports.SaveFbInfo = function(obj) {

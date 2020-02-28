@@ -1,10 +1,28 @@
 
 var doAction = require("./doAction")
 
+currentView = false
+
+exports.pageA = function (req,res ) {
+  var assignment = doAction.GetAssignment(req.query.id)
+  currentView = true
+  res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: true})
+}
+
+exports.pageB = function (req,res ) {
+  currentView = false
+  var assignment = doAction.GetAssignment(req.query.id)
+  res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: false})
+}
 
 exports.view = function (req,res ) {
-  var assignment = doAction.GetAssignment(req.query.id)
-  res.render('index',{assignment,fburl: req.cookies.fburl})
+  if(currentView) {
+    res.redirect('/page_A')
+  } else {
+    res.redirect('/page_B')
+  }
+  // var assignment = doAction.GetAssignment(req.query.id)
+  // res.render('index',{assignment,fburl: req.cookies.fburl})
 }
 
 exports.Assignment = function (req,res ) {

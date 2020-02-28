@@ -4,7 +4,16 @@ body,html {
 	margin: 0;
 	padding: 0;
 }
-
+#footer {
+    height: 70px;
+    overflow: hidden;
+    position: relative;
+}
+#footer #back {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 #footer h2{
 	text-align: center;
 	margin: 0 auto;
@@ -41,7 +50,7 @@ ul, li {
 
         #calendar {
             width: 100%;
-            height: calc(100% - 100px);
+            height: calc(100% - 70px);
         }
 
         .calendar {
@@ -71,7 +80,8 @@ ul, li {
 
         .calendar-table {
             width: 100%;
-            height: calc(100% - 100px);
+            height: 100%;
+            /* height: calc(100% - 100px); */
         }
 
         .calendar-column-header,
@@ -85,7 +95,7 @@ ul, li {
             padding-right: 12px;
         }
         .calendar-body {
-            height: calc(100% - 100px)!important;
+            height: calc(100% - 53px)!important;
         }
         .calendar-table {
             table-layout: fixed;

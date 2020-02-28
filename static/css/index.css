@@ -15,13 +15,75 @@ body,html {
 }
 #box header{
 	position: fixed;
-	overflow: hidden;
+	z-index: 9999;
 	width: 100%;
 	background-color: #fff;
-	height: 72px;
+	height: 71px;
 	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+.content {
+	height: calc(100% - 122px);
+	padding-top: 72px;
+	padding-bottom: 50px;
+	/* overflow: hidden; */
+	overflow: auto;
+	position: relative;
 }
 
+.menu {
+	float: left;
+	position: relative;
+	width: 48px;
+	height: 48px;
+	margin-top: 14px;
+	margin-left: 10px;
+	cursor: pointer;
+	transition: all 0.5s;
+	/* background: url(../photo/menu.png) no-repeat; */
+	/* background-size: 48px; */
+}
+.menu > img {
+	width: 40px;
+}
+.menu ul {
+	position: fixed;
+	display: none;
+	z-index: 9999999999;
+	background-color: #fff;
+	top: 60px;
+	left: 10px;
+	padding: 0;
+	margin: 0;
+	width: 200px;
+	height: auto;
+	border: 2px solid #ccc;
+}
+.menu ul li {
+	display: flex;
+	height: 30px;
+	padding: 10px 0;
+	line-height: 30px;
+	justify-content: center;
+	align-content: center;
+}
+.menu ul li:hover {
+	background-color: #ccc;
+}
+.menu ul li a {
+	line-height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000;
+	text-decoration: none;
+}
+.menu ul li a span {
+	margin-left: 5px;
+}
+.menu ul li img{
+	height: 24px;
+}
 #login{
 	position: absolute;
 	top: 50%;
@@ -30,14 +92,12 @@ body,html {
 	right: 10px;
 }
 #box div{
-	z-index: 1;
+	/* z-index: 1; */
 }
-#jsonWrap{
-	height: calc(100% - 122px);
-	padding-top: 72px;
+/* #jsonWrap{
+	height: 100%;
 	overflow: auto; 
-	padding-bottom: 50px;
-}
+}	 */
 #footer{
 	position: fixed;
 	display: flex;
@@ -93,11 +153,40 @@ body,html {
 }
 
 .objS{
+	position: relative;
 	padding: 15px;
 	height: 230px;
 	border: 1px solid #9a9696;
 }
-
+.objS .title i{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(../photo/up.png) no-repeat;
+	background-size: 16px;
+}
+.objS .title i:hover {
+	/* box-shadow:  0 0 0 1px #ccc; */
+	cursor: pointer;
+}
+.objS.viewAlt {
+	height: auto;
+	min-height: 60px;
+}
+.objS.viewAlt > .title{
+	display: block!important;
+}
+.objS .finish {
+	position: absolute;
+	display: block!important;
+	top: 30px;
+	right: 20px;
+}
+.objS.viewAlt .delete {
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
+}
 .objS h4{
 	font-size: 20px;
 }
@@ -108,4 +197,20 @@ body,html {
 
 .highColor{
 	color: rgb(42,198,187);
+}
+
+.delete {
+	height: 32px;
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
+	/* background: url(../photo/delete.png) no-repeat ; */
+	/* background-size: 32px; */
+	border: 1px solid #ccc;
+	cursor: pointer;
+	border-radius: 16px;
+	background-color: #fff;
+	padding: 0 10px;
+	border: 1px solid #000;
+	outline: none;
 }

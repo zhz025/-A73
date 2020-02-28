@@ -8,6 +8,12 @@
 </head>
 <body>
 <div id="box">
+	<header>
+		<div id="back">
+			<a href="/"><img src="photo/arrow.png"></a>
+		</div>
+		<h2>Add Assignment</h2>
+	</header>
 	<div id="header">
 		<form action="#" method="post">
 			<div class="form_obj">
@@ -22,14 +28,14 @@
 				<span>Due Date:</span>
 				<input type="date" name="date" id="date">
 			</div>
-			<p>Time Needed:&nbsp;<input type="number" name="time" id="time"></p>
+			<div class="form_obj">
+				<span>Time Needed:</span>
+				<input type="number" name="time" id="time">
+			</div>
 		</form>
 	</div>
 	<div id="footer" class="highColor">
 		<h2 onclick="postData()" style="color: #ffffff">Add</h2>
-	</div>
-	<div id="back">
-		<a href="/"><img src="photo/arrow.png"></a>
 	</div>
 </div>
 <script src="js/jquery.js"></script>

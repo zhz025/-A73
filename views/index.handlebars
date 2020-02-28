@@ -10,40 +10,91 @@
 <body>
 <div id="box">
 	<header>
+		{{#if viewAlt}}
+			<div class="menu">
+				<img src="photo/menu.png" alt="" >
+				<ul>
+					<li>
+						<a href="/"><img src="photo/1_in.png"> <span>HomePage</span></a>
+					</li>
+					<li>
+						<a href="/calendar"><img src="photo/2.png"><span>Calendar</span></a>
+					</li>
+					<li>
+						<a href="/Assignment"><img src="photo/3.png"><span>Add Assignment</span></a>
+					</li>
+					<li>
+						<a href="/Planforme"><img src="photo/5.png"><span>Plan For Me</span></a>
+					</li>
+				</ul>
+			</div>
+		{{/if}}
+
 		{{#if fburl }}
 			<a href="/login"><img src='{{fburl}}' id="login"></a>
 		{{else }}
 			<a href="/login"><img src='photo/6.png' id="login"></a>
-		
 		{{/if}}
-		<h3 id="titleT" style="font-size: 22px;" class="highColor"></h3>
-		<hr>
+		<h3 id="titleT" style="font-size: 22px;position: absolute;width: 100%;" class="highColor"></h3>
 	</header>
-	<div id="jsonWrap">
-			{{#each assignment}}
-			<div class="objS">
-					<h4 class="highColor">{{name}}</h4>
-					<h4>{{classN}}</h4>
-					<h3>Due Date: {{formatDate date}}</h3>
-					<h3>Time Left: {{countTime date}} days</h3>
-					<button style="float: right;" onclick="deleteID('{{id}}')">delete</button>
+	<div class="content">
+		{{#if viewAlt}}
+				{{#each assignment}}
+					<div class="objS viewAlt">
+							{{#if isFinish}}
+								<img class="finish" src="photo/finish.png" width="36" alt="">
+							{{/if}}
+							<h4 class="title highColor">{{name}}
+								<i></i>
+							</h4>
+							<div style="display: none;">
+								<h4>{{classN}}</h4>
+								<h3>Due Date: {{formatDate date}}</h3>
+								<h3>Time Left: {{countTime date}} days</h3>
+								<button class="delete" style="float: right;" onclick="deleteID('{{id}}')">Delete</button>
+							</div>
+					</div>
+				{{/each}}
+
+		{{else}}
+					{{#each assignment}}
+					<div class="objS">
+							{{#if isFinish}}
+								<img class="finish" src="photo/finish.png" width="36" alt="">
+							{{/if}}
+							<h4 class="highColor">{{name}}</h4>
+							<h4>{{classN}}</h4>
+							<h3>Due Date: {{formatDate date}}</h3>
+							<h3>Time Left: {{countTime date}} days</h3>
+							<button class="delete" style="float: right;" onclick="deleteID('{{id}}')">Delete</button>
+					</div>
+					{{/each}}
+		{{/if}}
+
+	</div>
+	{{#if viewAlt}}
+		<style>
+			.content  {
+				height: calc(100% - 72px)!important;
+				padding-bottom: 0!important;
+			}
+		</style>
+	{{else}}
+		<div id="footer">
+			<div id="footer1">
+				<a href="/"><img src="photo/1_in.png"></a>
 			</div>
-			{{/each}}
-	</div>
-	<div id="footer">
-		<div id="footer1">
-			<a href="/"><img src="photo/1_in.png"></a>
+			<div id="footer2">
+				<a href="/calendar"><img src="photo/2.png"></a>
+			</div>
+			<div id="footer3">
+				<a href="/Assignment"><img src="photo/3.png"></a>
+			</div>
+			<div id="footer5">
+				<a href="/Planforme"><img src="photo/5.png"></a>
+			</div>
 		</div>
-		<div id="footer2">
-			<a href="/calendar"><img src="photo/2.png"></a>
-		</div>
-		<div id="footer3">
-			<a href="/Assignment"><img src="photo/3.png"></a>
-		</div>
-		<div id="footer5">
-			<a href="/Planforme"><img src="photo/5.png"></a>
-		</div>
-	</div>
+	{{/if}}
 </div>
 <script src="js/jquery.js"></script>
 <script src="js/handlebars.min-v4.7.3.js"></script>
@@ -66,8 +117,32 @@
         var xTtime = myDate.toLocaleDateString( ).replace(/\//g, '-');       //update due date
 				var titleT=new Date(xTtime).toDateString();
 				$("#titleT").html(titleT);
-    })
 
+				$(".viewAlt .title>i").on("click",function(e){
+					$(e.target.parentElement.nextElementSibling).toggle()
+				})
+
+				
+				$(".menu").on("click",function(){
+					if(!$(".menu>img")[0].rotate) {
+						$(".menu>ul").show()
+						$(".menu>img").css({'transform':'rotate(90deg)'});   
+						$(".menu>img")[0].rotate = true
+						$("body").on("click",menuClick)
+					} else {
+						$(".menu>ul").hide()
+						$(".menu>img").css({'transform':'none'});   
+						$(".menu>img")[0].rotate = false
+					}
+				})
+    })
+		function menuClick(e){
+			if(!$(".menu")[0].contains(e.target)) {
+				$(".menu ul").hide()
+				$(".menu>img").css({'transform':'none'});
+				$("body").off("click",menuClick)  
+			} 
+		}
 		function deleteID(id) {
 			$.post("/api/deleteAssignmentByID",{id},function(data){
 				if (data.code == 0) {

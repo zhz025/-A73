@@ -4,6 +4,13 @@ body,html {
 	margin: 0;
 	padding: 0;
 }
+header {
+	height: 70px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	color: rgb(42,198,187);
+}
 #box{
 	width: 100%;
 	height: 100%;
@@ -21,18 +28,24 @@ body,html {
 	margin: 10px 0;
 }
 #header span{
-	display: inline-flex;
-	width: 80px;
+	display: inline-block;
+	text-align: right;
+	font-weight: 700;
+	width: 120px;
+	padding-right: 10px;
 }
 #header input{
 	width: 160px;
+	border-radius: 8px;
+	outline: none;
+	border: 2px solid #000;
 	/*margin-left: 80px;*/
 }
 #footer{
-	width: 100%;
+	width: calc(100% - 2px);
 	height: 70px;	
 	position: fixed;
-	bottom: 33px;
+	bottom: 0;
 	border: 1px solid;
 }
 #footer h2{
@@ -41,8 +54,9 @@ body,html {
 	line-height: 70px;
 }
 #back {
-	position: fixed;
-	bottom: 0;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
 	width: 100%;
 	height: 33px;
 }
