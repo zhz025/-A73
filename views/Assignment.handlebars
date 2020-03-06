@@ -69,6 +69,17 @@
 				var date = date_now.getDate() < 10 ? "0"+date_now.getDate() : date_now.getDate();
 				//设置input标签的max属性
 				$("#date").attr("min",year+"-"+month+"-"+date);
+
+				$("#date").on("input",(e)=>{
+
+						var iptVal = new Date(e.target.value)
+						var today = new Date(year+"-"+month+"-"+date)
+
+						if(today.getTime()>iptVal.getTime()) {
+							$("#date").val("")
+						}
+				})
+
 		})
     function postData() {
         var name=$("#name").val();
