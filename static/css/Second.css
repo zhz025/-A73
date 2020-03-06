@@ -25,7 +25,16 @@ header {
 	padding-top: 150px;
 }
 .form_obj{
+	display: flex;
 	margin: 10px 0;
+}
+.form_obj>span {
+	flex: 1
+}
+.form_obj>div {
+	flex: 1;
+	display: flex;
+	align-items: flex-start;
 }
 #header span{
 	display: inline-block;
@@ -40,6 +49,13 @@ header {
 	outline: none;
 	border: 2px solid #000;
 	/*margin-left: 80px;*/
+}
+
+#time .item {
+	width: 82px;
+}
+#time .item input {
+	width: 80px;
 }
 #footer{
 	width: calc(100% - 2px);

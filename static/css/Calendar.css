@@ -134,7 +134,7 @@ ul, li {
         }
 
         .calendar-content {
-            height: 60px;
+            height: 100px;
             overflow-x: hidden;
             overflow-y: auto;
             position: static;

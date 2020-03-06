@@ -5,18 +5,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-159851142-1', 'auto');
-ga('require','GTM-NBNCTL5');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
 </head>
 <body>
 <div id="box">
@@ -71,7 +60,10 @@ ga('send', 'pageview');
 					{{#each assignment}}
 					<div class="objS">
 							{{#if isFinish}}
-								<img class="finish" src="photo/finish.png" width="36" alt="">
+							<div class="finish">
+								<span class="highColor">complete</span>
+								<img  src="photo/finish.png" width="36" alt="">
+							</div>
 							{{/if}}
 							<h4 class="highColor">{{name}}</h4>
 							<h4>{{classN}}</h4>
@@ -107,28 +99,21 @@ ga('send', 'pageview');
 		</div>
 	{{/if}}
 </div>
+
+
+
 <script src="js/jquery.js"></script>
+<script src="js/Popup.js"></script>
 <script src="js/handlebars.min-v4.7.3.js"></script>
 <script src="js/json.js"></script>
 
-
-<script id="table-template" type="text/x-handlebars-template">
-	{{!-- {{#each assignment}}
-        <div class="objS">
-            <h4 class="highColor">{{name}}</h4>
-            <h4>{{classN}}</h4>
-            <h3>Due Date: {{formatDate date}}</h3>
-            <h3>Time Left: {{countTime date}} days</h3>
-        </div>
-        {{/each}} --}}
-</script>
 <script>
     $(function () {
         var myDate = new Date();
         var xTtime = myDate.toLocaleDateString( ).replace(/\//g, '-');       //update due date
 				var titleT=new Date(xTtime).toDateString();
 				$("#titleT").html(titleT);
-
+				window.DeletePopup = new $.Popup({content: 'Delete Assignment'})
 				$(".viewAlt .title>i").on("click",function(e){
 					$(e.target.parentElement.nextElementSibling).toggle()
 				})
@@ -155,12 +140,17 @@ ga('send', 'pageview');
 			} 
 		}
 		function deleteID(id) {
-			$.post("/api/deleteAssignmentByID",{id},function(data){
-				if (data.code == 0) {
-					alert("delete success")
-					location.reload()
-				}
-			})
+			window.DeletePopup.Show()
+
+			window.DeletePopup._opts.yescb = function() {
+				$.post("/api/deleteAssignmentByID",{id},function(data){
+					if (data.code == 0) {
+						alert("delete success")
+						location.reload()
+					}
+				})
+			}
+			
 		}
     
 </script>

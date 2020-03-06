@@ -34,6 +34,7 @@ body,html {
 .menu {
 	float: left;
 	position: relative;
+	z-index: 999;
 	width: 48px;
 	height: 48px;
 	margin-top: 14px;
@@ -182,6 +183,15 @@ body,html {
 	top: 30px;
 	right: 20px;
 }
+
+.objS .finish img{
+	vertical-align: top;
+}
+.objS .finish span {
+	line-height: 36px;
+	font-size: 22px;
+	padding-right: 10px;
+}
 .objS.viewAlt .delete {
 	position: absolute;
 	bottom: 10px;
@@ -213,4 +223,9 @@ body,html {
 	padding: 0 10px;
 	border: 1px solid #000;
 	outline: none;
+}
+
+.delete:hover {
+	background-color: #000;
+	color: #fff;
 }

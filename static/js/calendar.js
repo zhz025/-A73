@@ -364,10 +364,11 @@ Calendar.prototype = {
             s = '';
 
         me.viewData = viewData = me.getViewDate(newDate);
+        
 
         var _newDate = me._cloneDate(newDate);
         //当前date
-        var nowNum = _newDate.getDate();
+        var nowNum = me.options.newDate.getDate();
 
         //第一天周几
         _newDate.setDate(1);
@@ -399,7 +400,8 @@ Calendar.prototype = {
                 else if (renderDate.getMonth() > newDate.getMonth()) {
                     s += '<td title="' + year + ' ' + translation.months[month-1] + ' ' + date + '" class="calendar-cell calendar-next-month-cell">';
                 }
-                else if (date == nowNum) {
+                // else if (date == nowNum && (renderDate.getMonth() == me.options.newDate.getMonth()) ) {
+                else if (date ==  new Date().getDate() && (renderDate.getMonth() == new Date().getMonth()) ) {
                     s += '<td title="' + year + ' ' + translation.months[month-1] + ' ' + date + '" class="calendar-cell calendar-today">';
                 }
                 else {
