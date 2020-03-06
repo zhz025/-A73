@@ -153,8 +153,10 @@ ga('send', 'pageview');
 			
 			window.DeletePopup._opts.nocb = function(){
 			 ga("send","event","No","click")
+			 window.DeletePopup.Close()
 			 }
 			window.DeletePopup._opts.yescb = function() {
+			 ga("send","event","Yes","click")
 				$.post("/api/deleteAssignmentByID",{id},function(data){
 					if (data.code == 0) {
 						alert("delete success")
