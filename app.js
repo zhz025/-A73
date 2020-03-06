@@ -60,8 +60,8 @@ global.isLogin = function(req,res,next) {
 }
 // Add routes here
 app.get('/', global.isLogin,indexRouter.view);
-app.get('/page_B', global.isLogin,indexRouter.pageA);
-app.get('/page_A', global.isLogin,indexRouter.pageB);
+app.get('/page_A', global.isLogin,indexRouter.pageA);
+app.get('/page_B', global.isLogin,indexRouter.pageB);
 app.get('/Assignment', global.isLogin, indexRouter.Assignment)
 app.get('/calendar', global.isLogin, indexRouter.calendar)
 app.get('/Todolist', global.isLogin, indexRouter.Todolist)

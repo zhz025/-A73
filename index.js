@@ -17,9 +17,9 @@ exports.pageB = function (req,res ) {
 
 exports.view = function (req,res ) {
   if(currentView) {
-    res.redirect('/page_A')
-  } else {
     res.redirect('/page_B')
+  } else {
+    res.redirect('/page_A')
   }
   // var assignment = doAction.GetAssignment(req.query.id)
   // res.render('index',{assignment,fburl: req.cookies.fburl})
