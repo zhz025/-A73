@@ -69,14 +69,18 @@
 				var date = date_now.getDate() < 10 ? "0"+date_now.getDate() : date_now.getDate();
 				//设置input标签的max属性
 				$("#date").attr("min",year+"-"+month+"-"+date);
-
+				window.WaringDatePopup = new $.Popup({ type: 2,content: 'Can not select th data before today!'})
 				$("#date").on("input",(e)=>{
 
 						var iptVal = new Date(e.target.value)
 						var today = new Date(year+"-"+month+"-"+date)
 
 						if(today.getTime()>iptVal.getTime()) {
+							WaringDatePopup.Show()
+							WaringDatePopup._opts.yescb = function(e) {
 							$("#date").val("")
+							e.Close()
+							}
 						}
 				})
 
