@@ -6,13 +6,13 @@ currentView = false
 exports.pageA = function (req,res ) {
   var assignment = doAction.GetAssignment(req.query.id)
   currentView = true
-  res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: true})
+  res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: currentView})
 }
 
 exports.pageB = function (req,res ) {
   currentView = false
   var assignment = doAction.GetAssignment(req.query.id)
-  res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: false})
+  res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: currentView})
 }
 
 exports.view = function (req,res ) {
