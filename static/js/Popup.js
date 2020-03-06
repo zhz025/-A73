@@ -37,6 +37,10 @@ style.appendChild(document.createTextNode(`
     background-color: rgb(42,198,187);
     margin-right: 10px;
   }
+  #Modal  button.continue {
+    background-color: rgb(42,198,187);
+    text-align: center
+  }
 `))
 
 document.head.appendChild(style)
@@ -46,6 +50,7 @@ document.head.appendChild(style)
   console.log($)
   $.Popup  = function(opts) {
     this._opts = {
+      type: opts.type || 1,
       content: opts.content || "Content ......",
       yes: opts.yes || "Yes",
       no: opts.no || "No",
@@ -60,8 +65,14 @@ document.head.appendChild(style)
           <div class="top">
             ${this._opts.content}
           </div>
-          <button class="success">${this._opts.yes}</button>
-          <button class="cancel">${this._opts.no}</button>
+
+          ${this._opts.type == 1 ? '\
+              <button class="success">'+this._opts.yes+'</button>\
+              <button class="cancel">'+this._opts.yes+'</button>\
+          ': '\
+              <button class="continue">continue</button>\
+          '}
+          
         </div>
     `
     this.bg = $(`<div style="display: none;position: fixed;width: 100%;height: 100%;z-index: 99999;top:0;background: rgba(255,255,255,.4)"></div>`)
@@ -71,21 +82,36 @@ document.head.appendChild(style)
     this.el = $("#Modal")
 
     var that = this
-    document.querySelector("#Modal .success").addEventListener("click",function(){
-      if(that._opts.yescb) {
-        that._opts.yescb(that)
-      } else {
-        that.Close()
-      }
-    })
+    
+
+    if(this._opts.type == 2) {
+
+      document.querySelector("#Modal .continue").addEventListener("click",function(){
+        if(that._opts.yescb) {
+          that._opts.yescb(that)
+        } else {
+          that.Close()
+        }
+      })
+    } else {
+      document.querySelector("#Modal .success").addEventListener("click",function(){
+        if(that._opts.yescb) {
+          that._opts.yescb(that)
+        } else {
+          that.Close()
+        }
+      })
+
+      document.querySelector("#Modal .cancel").addEventListener("click",function(){
+        if(that._opts.nocb) {
+          that._opts.nocb(that)
+        } else {
+          that.Close()
+        }
+      })
+    }
   
-    document.querySelector("#Modal .cancel").addEventListener("click",function(){
-      if(that._opts.nocb) {
-        that._opts.nocb(that)
-      } else {
-        that.Close()
-      }
-    })
+    
 
     this.Show = function(opts){
       if(this.Visiable) {
