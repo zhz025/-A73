@@ -7,6 +7,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/Planforme.css">
 	<script src="/js/jquery.js"></script>
+	<script src="js/Popup.js"></script>
 	
 </head>
 
@@ -107,7 +108,13 @@
 
 </div>
 
+
 <script>
+
+	$(function(){
+
+		window.least15Modal = new $.Popup({type: $.Popup.Tip,content: 'Due to the efficiency of learning,the learning plan can not be set less than 15 minutes.'})
+	})
 	function Yesto() {
 		window.needTime = 0
 		WarningModel('hide')
@@ -190,15 +197,20 @@
 				alert("Please input time!!!!")
 				return
 			}
+			if ((hour * 60 + minute) < 15) {
+				least15Modal.Show()
+				return
+			} 
+
 			if ( (hour * 60 + minute) < window.needTime ) {
 				var text = hour ? (hour + " hour ") : ""
 				text += minute ? (minute + " minute") : ""
 				$(".needTimeTip").text(text)
 				WarningModel('show')
 			} else {
+				
 				tonext(curr,to)
 				var text = ''
-
 				if (window.WillDo.length == 1) {
 					var item = window.WillDo[0];
 					var needTime = (hour * 60 + minute)
