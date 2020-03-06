@@ -150,7 +150,10 @@ ga('send', 'pageview');
 		}
 		function deleteID(id) {
 			window.DeletePopup.Show()
-
+			
+			window.DeletePopup._opts.nocb = function(){
+			 ga("send","event","No","click")
+			 }
 			window.DeletePopup._opts.yescb = function() {
 				$.post("/api/deleteAssignmentByID",{id},function(data){
 					if (data.code == 0) {
