@@ -65,16 +65,30 @@ document.head.appendChild(style)
           <div class="top">
             ${this._opts.content}
           </div>
-
-          ${this._opts.type == 1 ? '\
-              <button class="success">'+this._opts.yes+'</button>\
-              <button class="cancel">'+this._opts.yes+'</button>\
-          ': '\
-              <button class="continue">continue</button>\
-          '}
-          
-        </div>
     `
+    if( this._opts.type == $.Popup.Modal) {
+      this.html += `
+              <button class="success">${this._opts.yes}</button>
+              <button class="cancel">${this._opts.yes}</button>
+            </div>
+
+        `
+    } else if( this._opts.type == $.Popup.Continue) {
+      this.html += `
+              <button class="continue">${this._opts.yes}</button>
+            </div>
+        `
+    } else if( this._opts.type == $.Popup.Tip) {
+      this.html = `
+        <div id="Modal" >
+          <div class="top">
+            <img src="/photo/info.png" width=40/>
+            <p>${this._opts.content}</p>
+          </div>
+        </div>
+        `
+    } 
+
     this.bg = $(`<div style="display: none;position: fixed;width: 100%;height: 100%;z-index: 99999;top:0;background: rgba(255,255,255,.4)"></div>`)
 
     $("body").append(this.bg)
@@ -84,7 +98,7 @@ document.head.appendChild(style)
     var that = this
     
 
-    if(this._opts.type == 2) {
+    if(this._opts.type == $.Popup.Continue ) {
 
       document.querySelector("#Modal .continue").addEventListener("click",function(){
         if(that._opts.yescb) {
@@ -93,7 +107,7 @@ document.head.appendChild(style)
           that.Close()
         }
       })
-    } else {
+    } else if(this._opts.type == $.Popup.Modal )  {
       document.querySelector("#Modal .success").addEventListener("click",function(){
         if(that._opts.yescb) {
           that._opts.yescb(that)
@@ -109,11 +123,19 @@ document.head.appendChild(style)
           that.Close()
         }
       })
-    }
+    } else if(this._opts.type == $.Popup.Tip ) {
+
+    }  
   
     
 
     this.Show = function(opts){
+      if(this._opts.type == $.Popup.Tip ) {
+        var that = this
+        setTimeout(function(){
+          that.Close()
+        },2000)
+      }  
       if(this.Visiable) {
         return
       }
@@ -134,6 +156,10 @@ document.head.appendChild(style)
 
 
   }
+
+  $.Popup.Modal = 1
+  $.Popup.Continue = 2
+  $.Popup.Tip = 3
   
    
 })(jQuery);
