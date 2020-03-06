@@ -5,21 +5,21 @@ currentView = false
 
 exports.pageA = function (req,res ) {
   var assignment = doAction.GetAssignment(req.query.id)
-  currentView = true
+  currentView = false
   res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: currentView})
 }
 
 exports.pageB = function (req,res ) {
-  currentView = false
+  currentView = true
   var assignment = doAction.GetAssignment(req.query.id)
   res.render('index',{assignment,fburl: req.cookies.fburl, viewAlt: currentView})
 }
 
 exports.view = function (req,res ) {
   if(currentView) {
-    res.redirect('/page_A')
-  } else {
     res.redirect('/page_B')
+  } else {
+    res.redirect('/page_A')
   }
   // var assignment = doAction.GetAssignment(req.query.id)
   // res.render('index',{assignment,fburl: req.cookies.fburl})
