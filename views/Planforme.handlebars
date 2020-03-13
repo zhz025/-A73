@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 	<link rel="stylesheet" type="text/css" href="css/Planforme.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<script src="/js/jquery.js"></script>
 	<script src="js/Popup.js"></script>
 	
@@ -18,18 +19,26 @@
 	</div>
 	<div class="step" step='1'>
 		<div id="jsonWrap">
+					
 					{{#each assignment}}
 						{{#if isFinish}}
 
 						{{else}}
-							<div class="objS">
-								<input type="checkbox" name="cb" data-id="{{id}}">
-									<h4 class="highColor">{{name}}</h4>
-									<h4>{{classN}}</h4>
-									<h3>Due Date: {{formatDate date}}</h3>
-									<h3>Time Left: {{countTime date}} days</h3>
-							</div>
-							{{/if}}
+					<div class="page_a ">
+						<div class="pic">
+							<img src="/photo/job.png" alt="">
+						</div>
+
+						<div class="assignment">
+							<input style="display: none;" type="checkbox" name="cb" data-id="{{id}}">
+							<p class="highColor">{{name}}</p>
+							<p>{{classN}}</p>
+							<p>Due Date: {{formatDate date}}</p>
+							<p>Time Left: {{countTime date}} days</p>
+						</div>
+					</div>
+
+					{{/if}}
 					{{/each}}
 		</div>
 		<div id="continue">
@@ -112,7 +121,15 @@
 <script>
 
 	$(function(){
-
+		$(function(){
+		$(".page_a").click(function () {
+			$(this).find('input').prop('checked', !$(this).find('input').prop('checked'));
+			$(this).toggleClass('active')
+			// if(!this.isActive) {
+			// }
+			// this.isActive = !this.isActive
+		})
+})
 		window.least15Modal = new $.Popup({type: $.Popup.Tip,content: 'Due to the efficiency of learning,the learning plan can not be set less than 15 minutes.'})
 	})
 	function Yesto() {
