@@ -69,7 +69,7 @@ document.head.appendChild(style)
     if( this._opts.type == $.Popup.Modal) {
       this.html += `
               <button class="success">${this._opts.yes}</button>
-              <button class="cancel">${this._opts.yes}</button>
+              <button class="cancel">${this._opts.no}</button>
             </div>
 
         `
