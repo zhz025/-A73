@@ -3,6 +3,7 @@
 <head>
 	<title>homepage</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<script>
@@ -17,6 +18,18 @@ ga('send', 'pageview');
 </script>
 </head>
 <body>
+	{{#if viewAlt}}
+
+	{{else}}
+		<style>
+			header {
+				background-color: #2ac6bb!important;
+			}
+			header #titleT {
+				color: #fff;
+			}
+		</style>
+	{{/if}}
 <div id="box">
 	<header>
 		{{#if viewAlt}}
@@ -44,7 +57,7 @@ ga('send', 'pageview');
 		{{else }}
 			<a href="/login"><img src='photo/6.png' id="login"></a>
 		{{/if}}
-		<h3 id="titleT" style="font-size: 22px;position: absolute;width: 100%;" class="highColor"></h3>
+		<h3 id="titleT" style="font-size: 30px; font-family: 'Ubuntu-Blod'; position: absolute;width: 100%;line-height: 72px;margin: 0;" class="highColor"></h3>
 	</header>
 	<div class="content">
 		{{#if viewAlt}}
@@ -67,18 +80,28 @@ ga('send', 'pageview');
 
 		{{else}}
 					{{#each assignment}}
-					<div class="objS">
-							{{#if isFinish}}
+					<div class="page_a ">
+						<div class="pic">
+							<img src="/photo/job.png" alt="">
+						</div>
+
+						<div class="assignment">
+							
+							<p class="highColor">{{name}}</p>
+							<p>{{classN}}</p>
+							<p>Due Date: {{formatDate date}}</p>
+							<p>Time Left: {{countTime date}} days</p>
+						</div>
 							<div class="finish">
-								<span class="highColor">complete</span>
-								<img  src="photo/finish.png" width="36" alt="">
+								{{#if isFinish}}
+								<div class="img">
+									<img  src="photo/finish.png" width="36" alt="">
+								</div>
+								{{/if}}
+								<div class="img _delete">
+									<img src="photo/delete.png"  width="32"  onclick="deleteID('{{id}}')"></img>
+								</div>
 							</div>
-							{{/if}}
-							<h4 class="highColor">{{name}}</h4>
-							<h4>{{classN}}</h4>
-							<h3>Due Date: {{formatDate date}}</h3>
-							<h3>Time Left: {{countTime date}} days</h3>
-							<button class="delete" style="float: right;" onclick="deleteID('{{id}}')">Delete</button>
 					</div>
 					{{/each}}
 		{{/if}}
@@ -115,6 +138,7 @@ ga('send', 'pageview');
 <script src="js/Popup.js"></script>
 <script src="js/handlebars.min-v4.7.3.js"></script>
 <script src="js/json.js"></script>
+<script src="js/common.js"></script>
 
 <script>
     $(function () {
