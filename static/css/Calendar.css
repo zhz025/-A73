@@ -33,14 +33,13 @@ body,html {
 #box div{
 	z-index: 1;
 }
-
 #back img{
 	z-index: 10;
-	width: 33px;
-	height: 33px;
+	width: 46px;
+	/* height: 33px; */
 	float: left;
-	margin-left: 28px;
-	margin-top: -5px;
+	margin-left: 10px;
+	/* margin-top: -5px; */
 }
 ul, li {
     padding: 0;
