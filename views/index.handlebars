@@ -82,7 +82,11 @@ ga('send', 'pageview');
 					{{#each assignment}}
 					<div class="page_a ">
 						<div class="pic">
+							{{#if isFinish}}
+									<img src="photo/_job.png" alt="">
+							{{else}}
 							<img src="/photo/job.png" alt="">
+							{{/if}}
 						</div>
 
 						<div class="assignment">
