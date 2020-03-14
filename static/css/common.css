@@ -2,6 +2,10 @@
   font-family: 'Ubuntu-Blod';
   src: url('../fonts/Ubuntu-B.ttf');
 }
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../fonts/Roboto-Regular.ttf');
+}
 
 /* Page_A */
 .page_a  {
@@ -14,10 +18,13 @@
 	box-shadow: 0 4px 2px #ccc ;
 }
 .page_a.active {
-	background-color: #2ac6bb;
+	background-color: #59dfd5;
 }
 .page_a.active .finish .img._delete {
 	visibility: visible;
+}
+.page_a.active p.highColor {
+  color: #fff;
 }
 .page_a > .pic {
 	display: flex;
@@ -35,7 +42,8 @@
 	flex: 1
 }
 .page_a  p {
-	font-size: 16px;
+  font-family: 'Roboto-Regular';
+	font-size: 15px;
 	margin: 0;
 	padding: 0;
 	font-weight: 600;
