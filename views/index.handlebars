@@ -57,7 +57,9 @@ ga('send', 'pageview');
 		{{else }}
 			<a href="/login"><img src='photo/6.png' id="login"></a>
 		{{/if}}
-		<h3 id="titleT" style="font-size: 30px; font-family: 'Ubuntu-Blod'; position: absolute;width: 100%;line-height: 72px;margin: 0;" class="highColor"></h3>
+		<h3 id="titleT" style="font-size: 30px; font-family: 'Ubuntu-Blod'; position: absolute;width: 100%;line-height: 72px;margin: 0;" class="highColor">
+			{{formatDate ""}}
+		</h3>
 	</header>
 	<div class="content">
 		{{#if viewAlt}}
@@ -143,16 +145,12 @@ ga('send', 'pageview');
 <script src="js/handlebars.min-v4.7.3.js"></script>
 <script src="js/json.js"></script>
 <script src="js/common.js"></script>
-<script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
 
 <script>
-		var vConsole = new VConsole();
     $(function () {
         var myDate = new Date();
         var xTtime = myDate.toLocaleDateString().replace(/\//g, '-');       //update due date
 				var titleT=new Date(xTtime).toDateString();
-				$("#titleT").html(titleT);
-				document.querySelector("#titleT").innerHTML = titleT
 				window.DeletePopup = new $.Popup({content: 'Delete Assignment'})
 				$(".viewAlt .title>i").on("click",function(e){
 					$(e.target.parentElement.nextElementSibling).toggle()
