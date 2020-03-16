@@ -143,8 +143,10 @@ ga('send', 'pageview');
 <script src="js/handlebars.min-v4.7.3.js"></script>
 <script src="js/json.js"></script>
 <script src="js/common.js"></script>
+<script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
 
 <script>
+		var vConsole = new VConsole();
     $(function () {
         var myDate = new Date();
         var xTtime = myDate.toLocaleDateString().replace(/\//g, '-');       //update due date
