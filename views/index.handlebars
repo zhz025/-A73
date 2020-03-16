@@ -147,9 +147,10 @@ ga('send', 'pageview');
 <script>
     $(function () {
         var myDate = new Date();
-        var xTtime = myDate.toLocaleDateString( ).replace(/\//g, '-');       //update due date
+        var xTtime = myDate.toLocaleDateString().replace(/\//g, '-');       //update due date
 				var titleT=new Date(xTtime).toDateString();
 				$("#titleT").html(titleT);
+				document.querySelector("#titleT").innerHTML = titleT
 				window.DeletePopup = new $.Popup({content: 'Delete Assignment'})
 				$(".viewAlt .title>i").on("click",function(e){
 					$(e.target.parentElement.nextElementSibling).toggle()
