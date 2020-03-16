@@ -9,6 +9,9 @@ var handlebars = require('express3-handlebars')
 var hbs = handlebars.create({
   helpers: {
     formatDate: function(date) {
+      if(!date) {
+        return  new Date().toDateString();
+      }
       return  new Date(date).toDateString();
     },
     countTime: function(date) {
